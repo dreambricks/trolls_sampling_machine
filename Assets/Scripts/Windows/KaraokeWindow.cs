@@ -1,19 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class KaraokeWindow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private RewardWindow rewardWindow;
+
+    public VideoPlayer player;
+
+    private void Start()
     {
-        
+        player.loopPointReached += OnVideoFinished;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnEnable()
     {
-        
+        if (!player.isPlaying)
+        {
+            player.Play();
+        }
+    }
+
+    private void OnVideoFinished(VideoPlayer vp)
+    {
+        rewardWindow.Show();
+        Hide();
+    }
+
+    private void OnDisable()
+    {
+        player.Stop();   
     }
 
     public void Show()
