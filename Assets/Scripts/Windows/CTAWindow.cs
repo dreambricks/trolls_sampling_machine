@@ -29,6 +29,9 @@ public class CTAWindow : MonoBehaviour
         {
             countDownWindow.Show();
             Hide();
+        } else if (data == "no")
+        {
+            LogUtil.SendLog(StatusEnum.TermosNaoAceito);
         }
     }
 

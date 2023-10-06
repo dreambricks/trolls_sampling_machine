@@ -1,6 +1,7 @@
 public enum StatusEnum
 {
     TermosNaoAceito,
-    AcaoExecutadaSemPremio,
+    TermosAceitoNaoCantou,
+    CantouMasNaoPegouPremio,
     AcaoConcluida
 }

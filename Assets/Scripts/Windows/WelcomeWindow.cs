@@ -5,6 +5,7 @@ using UnityEngine;
 public class WelcomeWindow : MonoBehaviour
 {
     [SerializeField] private CountDownWindow countDownWindow;
+    [SerializeField] private CTAWindow cTAWindow;
 
     public float totalTime;
     private float currentTime;
@@ -17,6 +18,17 @@ public class WelcomeWindow : MonoBehaviour
     private void Update()
     {
         Countdown();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GoToCountDownWindow();
+        }
+    }
+
+    private void GoToCountDownWindow()
+    {
+        countDownWindow.Show();
+        Hide();
     }
 
     public void Countdown()
@@ -26,7 +38,9 @@ public class WelcomeWindow : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
-            countDownWindow.Show();
+
+            cTAWindow.Show();
+            LogUtil.SendLog(StatusEnum.TermosAceitoNaoCantou);
             Hide();
         }
     }

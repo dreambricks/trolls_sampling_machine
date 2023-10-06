@@ -420,6 +420,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &474379221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474379223}
+  - component: {fileID: 474379222}
+  m_Layer: 0
+  m_Name: LogDataUploader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &474379222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474379221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32665b562a4ffa54cb3ec93b536e8a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputFolder: data_logs
+  backupFolder: data_logs_backup
+  uploadURL: http://localhost:5000/datalogs/upload
+  checkIntervalSeconds: 120
+--- !u!4 &474379223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474379221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 987.16705, y: 591.58466, z: -3.6666186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671976789
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076c93733b467142923047f167336c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 5
+  totalTime: 6
   countdownText: {fileID: 333473554}
   countDownWindow: {fileID: 880447218}
   karaokeWindow: {fileID: 85150572}
@@ -740,7 +788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &929088775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &968116153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1386839334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1212,7 +1260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countDownWindow: {fileID: 880447218}
-  totalTime: 5
+  cTAWindow: {fileID: 671976791}
+  totalTime: 20
 --- !u!1 &1412269779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,6 +1312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff37c237b0e94f48850f64c7fc6f3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cTAWindow: {fileID: 671976791}
+  url: http://localhost
+  totalTime: 20
 --- !u!1 &1508379632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1671239413
 Transform:
   m_ObjectHideFlags: 0
@@ -1555,7 +1607,7 @@ Transform:
   - {fileID: 968116154}
   - {fileID: 929088776}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1723161499
 GameObject:
