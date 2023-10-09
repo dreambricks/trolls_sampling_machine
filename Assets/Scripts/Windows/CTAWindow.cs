@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CTAWindow : MonoBehaviour
 {
     [SerializeField] private Image image;
-    [SerializeField] private CountDownWindow countDownWindow;
+    [SerializeField] private WelcomeWindow welcomeWindow;
     public UDPReceiver udpReceiver;
     public string uri;
 
@@ -27,7 +27,7 @@ public class CTAWindow : MonoBehaviour
         string data = udpReceiver.GetLastestNewData(1.0f);// don't get data that is older than 1 second
         if (data == "yes")
         {
-            countDownWindow.Show();
+            welcomeWindow.Show();
             Hide();
         } else if (data == "no")
         {

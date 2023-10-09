@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1508379634}
-  countDownWindow: {fileID: 880447218}
+  welcomeWindow: {fileID: 1386839335}
   udpReceiver: {fileID: 1203093440}
   uri: http://localhost:5000/qrcode
 --- !u!1 &707296681
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a4fdc1347a11ce4f9bd3733a2ca064d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6995d10cc8aafb144b5e7b36d4e5b260, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076c93733b467142923047f167336c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 6
+  totalTime: 4
   countdownText: {fileID: 333473554}
   countDownWindow: {fileID: 880447218}
   karaokeWindow: {fileID: 85150572}
@@ -1021,7 +1021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e97f763670d3b04082ac4879acffe09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e57f4662f985b84883dfcc047885ec9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 984b61af174a3d548b60288f889e07a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 479fa74c055904b48abbef73a4f36dfc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
