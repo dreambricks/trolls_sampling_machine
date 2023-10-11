@@ -8,22 +8,63 @@ public class RewardWindow : MonoBehaviour
     [SerializeField] private CTAWindow cTAWindow;
     public string url;
 
+    public ArduinoCommunicationReceiver arduinoCommunicationReceiver;
+    public string data;
+
+    public float totalTimeB;
+    private float currentTimeB;
+
     public float totalTime;
     private float currentTime;
+
+    private bool startReceivingData;
+
 
     private void OnEnable()
     {
         currentTime = totalTime;
+
+        totalTimeB = 1;
+        currentTimeB = totalTimeB;
+
+        data = "";
+        startReceivingData = false;
     }
 
     private void Update()
     {
         Countdown();
+        GetArduinoData();
+        CountDownReceiving();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+    private void CountDownReceiving()
+    {
+        currentTimeB -= Time.deltaTime;
+
+        if (currentTimeB <= 0)
         {
+            currentTimeB = 0;
+
+            startReceivingData=true;
+
+        }
+    }
+
+    private void GetArduinoData()
+    {
+
+        data = arduinoCommunicationReceiver.GetLastestData();
+
+        if (startReceivingData && data == "A")
+        //if (data == "A")
+        {
+            data = "";
+            startReceivingData = false;
             GoToCTAWindow();
         }
+
+
     }
 
     private void GoToCTAWindow()

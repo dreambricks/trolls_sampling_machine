@@ -7,20 +7,63 @@ public class WelcomeWindow : MonoBehaviour
     [SerializeField] private CountDownWindow countDownWindow;
     [SerializeField] private CTAWindow cTAWindow;
 
+    public ArduinoCommunicationReceiver arduinoCommunicationReceiver;
+
     public float totalTime;
     private float currentTime;
+
+
+    public float totalTimeB;
+    private float currentTimeB;
+
+    public string data;
+
+    private bool startReceivingData;
+
+
 
     private void OnEnable()
     {
         currentTime = totalTime;
+
+        totalTimeB = 1;
+        currentTimeB = totalTimeB;
+
+        data = "";
+        startReceivingData = false;
     }
+
 
     private void Update()
     {
         Countdown();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        GetArduinoData();
+
+        CountDownReceiving();
+    }
+
+    private void CountDownReceiving()
+    {
+        currentTimeB -= Time.deltaTime;
+
+        if (currentTimeB <= 0)
         {
+            currentTimeB = 0;
+
+            startReceivingData = true;
+
+        }
+    }
+
+    private void GetArduinoData()
+    {
+        data = arduinoCommunicationReceiver.GetLastestData();
+
+        if (startReceivingData && data == "A")
+        {
+            data = "";
+            startReceivingData = false;
             GoToCountDownWindow();
         }
     }

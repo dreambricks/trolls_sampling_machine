@@ -23,6 +23,15 @@ public class KaraokeWindow : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            rewardWindow.Show();
+            Hide();
+        }
+    }
+
     private void OnVideoFinished(VideoPlayer vp)
     {
         rewardWindow.Show();
