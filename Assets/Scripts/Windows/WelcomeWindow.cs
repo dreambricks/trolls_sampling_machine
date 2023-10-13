@@ -7,68 +7,49 @@ public class WelcomeWindow : MonoBehaviour
     [SerializeField] private CountDownWindow countDownWindow;
     [SerializeField] private CTAWindow cTAWindow;
 
-    public ArduinoCommunicationReceiver arduinoCommunicationReceiver;
-
     public float totalTime;
     private float currentTime;
 
-
-    public float totalTimeB;
-    private float currentTimeB;
-
-    public string data;
-
-    private bool startReceivingData;
-
+    public UDPReceiver udpReceiver;
 
 
     private void OnEnable()
     {
         currentTime = totalTime;
-
-        totalTimeB = 1;
-        currentTimeB = totalTimeB;
-
-        data = "";
-        startReceivingData = false;
+        SendLightButton("true");
     }
 
 
     private void Update()
     {
         Countdown();
-
-        GetArduinoData();
-
-        CountDownReceiving();
+        ButtonPressed();
     }
 
-    private void CountDownReceiving()
+    private void SendLightButton(string answer)
     {
-        currentTimeB -= Time.deltaTime;
+        string url = GameManager.GetAPIUrl();
+        string fullUrl = url + "/bt_light/" + answer;
 
-        if (currentTimeB <= 0)
-        {
-            currentTimeB = 0;
-
-            startReceivingData = true;
-
-        }
+        WebRequests.Get(fullUrl,
+            (string error) => { Debug.Log("Error!\n" + error); },
+            (string result) => { Debug.Log(result); }
+           );
     }
 
-    private void GetArduinoData()
-    {
-        data = arduinoCommunicationReceiver.GetLastestData();
 
-        if (startReceivingData && data == "A")
+    private void ButtonPressed()
+    {
+        string data = udpReceiver.GetLastestNewData(1.0f);// don't get data that is older than 1 second
+        if (data == "bt_pressed")
         {
-            data = "";
-            startReceivingData = false;
+            SendLightButton("false");
             GoToCountDownWindow();
         }
+ 
     }
 
-    private void GoToCountDownWindow()
+private void GoToCountDownWindow()
     {
         countDownWindow.Show();
         Hide();

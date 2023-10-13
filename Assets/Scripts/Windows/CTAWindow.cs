@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Policy;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 public class CTAWindow : MonoBehaviour
 {
     [SerializeField] private Image image;
     [SerializeField] private WelcomeWindow welcomeWindow;
     public UDPReceiver udpReceiver;
-    public string uri;
 
 
     private void OnEnable()
@@ -37,9 +38,10 @@ public class CTAWindow : MonoBehaviour
 
     void GetNewQRCode()
     {
+        string url = GameManager.GetAPIUrl();
+        string fullUrl = url + "/qrcode";
 
-        string uritext = uri;
-        WebRequests.GetTexture(uritext,
+        WebRequests.GetTexture(fullUrl,
             (string error) => { Debug.Log("Error!\n" + error); },
             (Texture2D texture2D) =>
             {

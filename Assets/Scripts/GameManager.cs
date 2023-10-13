@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Policy;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private CongratulationsWindow congratulationsWindow;
     [SerializeField] private RewardWindow rewardWindow;
     [SerializeField] private WelcomeWindow welcomeWindow;
+
+    public static string apiUrl;
     
     void Start()
     {
@@ -21,5 +24,14 @@ public class GameManager : MonoBehaviour
         rewardWindow.Hide();
         welcomeWindow.Hide();
     }
+
+
+    public static string GetAPIUrl()
+    {
+        apiUrl = "http://localhost:5000";
+        string url = apiUrl;
+        return url;
+    }
+   
 
 }

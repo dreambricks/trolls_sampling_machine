@@ -521,7 +521,6 @@ MonoBehaviour:
   image: {fileID: 1508379634}
   welcomeWindow: {fileID: 1386839335}
   udpReceiver: {fileID: 1203093440}
-  uri: http://localhost:5000/qrcode
 --- !u!1 &707296681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,9 +1260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownWindow: {fileID: 880447218}
   cTAWindow: {fileID: 671976791}
-  arduinoCommunicationReceiver: {fileID: 1873050529}
   totalTime: 20
-  data: 
+  udpReceiver: {fileID: 1203093440}
 --- !u!1 &1412269779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,10 +1313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cTAWindow: {fileID: 671976791}
-  url: http://localhost
-  arduinoCommunicationReceiver: {fileID: 1873050529}
-  data: 
   totalTime: 20
+  udpReceiver: {fileID: 1203093440}
 --- !u!1 &1508379632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,9 +1558,16 @@ MonoBehaviour:
   ctaWindow: {fileID: 671976791}
   notWorkingWindow: {fileID: 1012610361}
   maintWindow: {fileID: 1791682224}
-  checkIntervalSeconds: 120
-  apiUrl: http://localhost/working
+  checkIntervalSeconds: 10
   response: 
+  gameObjectsList:
+  - {fileID: 671976789}
+  - {fileID: 1386839333}
+  - {fileID: 880447216}
+  - {fileID: 85150570}
+  - {fileID: 1412269779}
+  - {fileID: 1791682222}
+  - {fileID: 1012610359}
 --- !u!4 &1597031969
 Transform:
   m_ObjectHideFlags: 0
@@ -1812,55 +1815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ee8b1429e0b7e4cbd5152a0d477fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1873050527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1873050528}
-  - component: {fileID: 1873050529}
-  m_Layer: 0
-  m_Name: ArduinoReceiver
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1873050528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873050527}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 993.50494, y: 542.0452, z: -9.825521}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1873050529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873050527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814f6d7f0a05a01458d53fb255681fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 
-  baudrate: 0
-  startReceiving: 1
-  printToConsole: 0
-  data: 
 --- !u!1 &2139712163
 GameObject:
   m_ObjectHideFlags: 0

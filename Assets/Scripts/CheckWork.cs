@@ -10,8 +10,9 @@ public class CheckWork : MonoBehaviour
     [SerializeField] private MaintWindow maintWindow;
 
     public int checkIntervalSeconds;
-    public string apiUrl;
     public string response;
+
+    public List<GameObject> gameObjectsList;
 
     private void Start()
     {
@@ -22,11 +23,14 @@ public class CheckWork : MonoBehaviour
 
     IEnumerator Worker()
     {
+        string url = GameManager.GetAPIUrl();
+        string fullUrl = url + "/working";
+
         while (true)
         {
             yield return new WaitForSeconds(checkIntervalSeconds);
 
-            using (UnityWebRequest www = UnityWebRequest.Get(apiUrl))
+            using (UnityWebRequest www = UnityWebRequest.Get(fullUrl))
             {
                 yield return www.SendWebRequest();
 
@@ -60,18 +64,39 @@ public class CheckWork : MonoBehaviour
         }
     }
 
+    public void DisableAllExcept(string gameObjectName)
+    {
+        foreach (GameObject obj in gameObjectsList)
+        {
+            if (obj.name != gameObjectName)
+            {
+                obj.SetActive(false);
+            } 
+            else if (obj.name == gameObjectName)
+            {
+                obj.SetActive(true);
+            }
+        }
+    }
+
+
     private void ExecuteMethodIfYes()
     {
-        ctaWindow.Show();
-        notWorkingWindow.Hide();
-        maintWindow.Hide();
+        //ctaWindow.Show();
+        //notWorkingWindow.Hide();
+        //maintWindow.Hide();
+
+        DisableAllExcept("CTAWindow");
     }
 
     private void ExecuteMethodIfNo()
     {
-        notWorkingWindow.Show();
-        ctaWindow.Hide();
-        maintWindow.Hide();
+        //notWorkingWindow.Show();
+        //ctaWindow.Hide();
+        //maintWindow.Hide();
+
+        DisableAllExcept("NotWorkingWindow");
+
     }
 
     private void ExecuteMethodIfMaint()

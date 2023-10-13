@@ -6,72 +6,56 @@ using UnityEngine.Networking;
 public class RewardWindow : MonoBehaviour
 {
     [SerializeField] private CTAWindow cTAWindow;
-    public string url;
-
-    public ArduinoCommunicationReceiver arduinoCommunicationReceiver;
-    public string data;
-
-    public float totalTimeB;
-    private float currentTimeB;
 
     public float totalTime;
     private float currentTime;
 
-    private bool startReceivingData;
+    public UDPReceiver udpReceiver;
 
 
     private void OnEnable()
     {
         currentTime = totalTime;
 
-        totalTimeB = 1;
-        currentTimeB = totalTimeB;
+        SendLightButton("true");
 
-        data = "";
-        startReceivingData = false;
     }
 
     private void Update()
     {
         Countdown();
-        GetArduinoData();
-        CountDownReceiving();
+        ButtonPressed();
     }
 
-    private void CountDownReceiving()
+
+    private void SendLightButton(string answer)
     {
-        currentTimeB -= Time.deltaTime;
+        string url = GameManager.GetAPIUrl();
+        string fullUrl = url + "/bt_light/" + answer;
 
-        if (currentTimeB <= 0)
-        {
-            currentTimeB = 0;
-
-            startReceivingData=true;
-
-        }
+        WebRequests.Get(fullUrl,
+            (string error) => { Debug.Log("Error!\n" + error); },
+            (string result) => { Debug.Log(result); }
+           );
     }
 
-    private void GetArduinoData()
+
+    private void ButtonPressed()
     {
-
-        data = arduinoCommunicationReceiver.GetLastestData();
-
-        if (startReceivingData && data == "A")
-        //if (data == "A")
+        string data = udpReceiver.GetLastestNewData(1.0f);// don't get data that is older than 1 second
+        if (data == "bt_pressed")
         {
-            data = "";
-            startReceivingData = false;
+            SendLightButton("false");
             GoToCTAWindow();
         }
-
 
     }
 
     private void GoToCTAWindow()
     {
         cTAWindow.Show();
-        StartCoroutine(RunMachine());
-        StartCoroutine(BlockUser());
+        RunMachine();
+        BlockUser();
         LogUtil.SendLog(StatusEnum.AcaoConcluida);
         Hide();
     }
@@ -90,42 +74,40 @@ public class RewardWindow : MonoBehaviour
         }
     }
 
-    IEnumerator RunMachine()
+    void RunMachine()
     {
+        string url = GameManager.GetAPIUrl();
         string fullUrl = url + "/dispensegift";
 
-        using (UnityWebRequest www = UnityWebRequest.Get(fullUrl))
-        {
-            yield return www.SendWebRequest();
+        WebRequests.Get(fullUrl,
+            (string error) => { Debug.Log("Error!\n" + error); },
+            (string result) => { 
+                Debug.Log(result); 
+                IncrementGiftsDispensed(); }
+           );
 
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.Log($"Error: {www.error}");
-            }
-            else
-            {
-                Debug.Log($"Received: {www.downloadHandler.text}");
-            }
-        }
     }
 
-    IEnumerator BlockUser()
+    void IncrementGiftsDispensed()
     {
-        string fullUrl = url + ":5000/block-user";
+        string url = GameManager.GetAPIUrl();
+        string fullUrl = url + "/increment_gifts";
 
-        using (UnityWebRequest www = UnityWebRequest.Get(fullUrl))
-        {
-            yield return www.SendWebRequest();
+        WebRequests.Get(fullUrl,
+            (string error) => { Debug.Log("Error!\n" + error); },
+            (string result) => { Debug.Log(result); }
+           );
+    }
 
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.Log($"Error: {www.error}");
-            }
-            else
-            {
-                Debug.Log($"Received: {www.downloadHandler.text}");
-            }
-        }
+    void BlockUser()
+    {
+        string url = GameManager.GetAPIUrl();
+        string fullUrl = url + "/block-user";
+
+        WebRequests.Get(fullUrl,
+            (string error) => { Debug.Log("Error!\n" + error); },
+            (string result) => { Debug.Log(result); }
+           );
     }
 
     public void Show()
