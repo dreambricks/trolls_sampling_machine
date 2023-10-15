@@ -43,7 +43,7 @@ public class RewardWindow : MonoBehaviour
     private void ButtonPressed()
     {
         string data = udpReceiver.GetLastestNewData(1.0f);// don't get data that is older than 1 second
-        if (data == "bt_pressed")
+        if (data == "bt_pressed" || Input.GetKeyDown("space"))
         {
             SendLightButton("false");
             GoToCTAWindow();
