@@ -83,19 +83,19 @@ public class CheckWork : MonoBehaviour
     private void ExecuteMethodIfYes()
     {
         //ctaWindow.Show();
-        //notWorkingWindow.Hide();
-        //maintWindow.Hide();
+        notWorkingWindow.Hide();
+        maintWindow.Hide();
 
-        DisableAllExcept("CTAWindow");
+        //DisableAllExcept("CTAWindow");
     }
 
     private void ExecuteMethodIfNo()
     {
-        //notWorkingWindow.Show();
+        notWorkingWindow.Show();
         //ctaWindow.Hide();
         //maintWindow.Hide();
 
-        DisableAllExcept("NotWorkingWindow");
+        //DisableAllExcept("NotWorkingWindow");
 
     }
 
