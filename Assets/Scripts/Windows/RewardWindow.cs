@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 public class RewardWindow : MonoBehaviour
 {
     [SerializeField] private CTAWindow cTAWindow;
+    [SerializeField] private WaitDispenserWindow waitDispenserWindow;
+
 
     public float totalTime;
     private float currentTime;
@@ -49,14 +51,14 @@ public class RewardWindow : MonoBehaviour
             Invoke("RunMachine", 1);
             BlockUser();
             LogUtil.SendLog(StatusEnum.AcaoConcluida);
-            GoToCTAWindow();
+            GoToWaitDispenser();
         }
 
     }
 
-    private void GoToCTAWindow()
+    private void GoToWaitDispenser()
     {
-        cTAWindow.Show();
+        waitDispenserWindow.Show();
         Hide();
     }
 

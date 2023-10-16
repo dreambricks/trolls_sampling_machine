@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private CongratulationsWindow congratulationsWindow;
     [SerializeField] private RewardWindow rewardWindow;
     [SerializeField] private WelcomeWindow welcomeWindow;
+    [SerializeField] private WaitDispenserWindow waitDispenserWindow;
+    [SerializeField] private RedeemWindow redeemWindow;
 
     public static string apiUrl;
     
