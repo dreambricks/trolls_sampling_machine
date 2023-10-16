@@ -46,6 +46,9 @@ public class RewardWindow : MonoBehaviour
         if (data == "bt_pressed" || Input.GetKeyDown("space"))
         {
             SendLightButton("false");
+            Invoke("RunMachine", 1);
+            BlockUser();
+            LogUtil.SendLog(StatusEnum.AcaoConcluida);
             GoToCTAWindow();
         }
 
@@ -54,9 +57,6 @@ public class RewardWindow : MonoBehaviour
     private void GoToCTAWindow()
     {
         cTAWindow.Show();
-        RunMachine();
-        BlockUser();
-        LogUtil.SendLog(StatusEnum.AcaoConcluida);
         Hide();
     }
 
