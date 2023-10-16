@@ -83,7 +83,8 @@ public class RewardWindow : MonoBehaviour
             (string error) => { Debug.Log("Error!\n" + error); },
             (string result) => { 
                 Debug.Log(result); 
-                IncrementGiftsDispensed(); }
+                //IncrementGiftsDispensed();
+            }
            );
 
     }
