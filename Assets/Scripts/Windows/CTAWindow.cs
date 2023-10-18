@@ -9,6 +9,8 @@ public class CTAWindow : MonoBehaviour
 {
     [SerializeField] private Image image;
     [SerializeField] private WelcomeWindow welcomeWindow;
+    [SerializeField] private NotWorkingWindow notWorkingWindow; 
+    
     public UDPReceiver udpReceiver;
 
 
@@ -28,8 +30,11 @@ public class CTAWindow : MonoBehaviour
         string data = udpReceiver.GetLastestNewData(1.0f);// don't get data that is older than 1 second
         if (data == "yes")
         {
-            welcomeWindow.Show();
-            Hide();
+            if (!notWorkingWindow.isActiveAndEnabled)
+            {
+                welcomeWindow.Show();
+                Hide();
+            }
         } else if (data == "no")
         {
             LogUtil.SendLog(StatusEnum.TermosNaoAceito);
